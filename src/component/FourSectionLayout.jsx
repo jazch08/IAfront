@@ -2,20 +2,14 @@ import { React,  useEffect, useState, useContext } from "react";
 const anio= 2023;
 import api from "../services/api";
 import { Link } from 'react-router-dom';
-
+import DataContext from "../context/data";
 const FourSectionLayout = () => {
   const[travelList, setTravelList] = useState([]);
+  const { state, setState } = useContext(DataContext);
 
-  useEffect(() => {
-    async function getTravelList(){
-        const { data } = await api.get("/api/prediccion");
-        setTravelList(data);
-    }
-    getTravelList();
-},[]);
 
   return (
-    travelList.map((el)=>(
+    data.map((el)=>(
     <div
       style={{
         display: 'flex',
@@ -88,7 +82,7 @@ const FourSectionLayout = () => {
       </div>
     </div>
     ))
-  );
+  )
 };
 
 export default FourSectionLayout;
