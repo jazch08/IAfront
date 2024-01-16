@@ -9,7 +9,7 @@ const FourSectionLayout = () => {
 
 
   return (
-    data.map((el)=>(
+    state.data.map((el)=>(
     <div
       style={{
         display: 'flex',
@@ -49,8 +49,8 @@ const FourSectionLayout = () => {
             padding: '20px',
           }}
         >
-          <p>Columna 2</p>
-          el.prediccion
+           <p>{el.prediccion}</p> 
+          
         </div>
 
         {/* Tercera columna que ocupa el 50% */}
@@ -63,6 +63,7 @@ const FourSectionLayout = () => {
         >
           <p>Columna 3 (50%)</p>
           <img src={el.photo}/>
+          <div>{el.photo}</div>
         </div>
       </div>
 
