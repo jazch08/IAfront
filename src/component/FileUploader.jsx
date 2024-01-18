@@ -51,7 +51,7 @@ const UploadFile = () => {
       <input type="file" onChange={handleFileUpload} /><br />
       <h3>Elija la cantidad de datos a predecir</h3>
       <input type='number' id='num' onChange={handleNumUpload} min={1} max={6}/><br />
-      <button onClick={handleUpload}>Upload</button>
+      <button style={{ marginTop: '20px' }} onClick={handleUpload}>Upload</button>
     </div>
   );
 };

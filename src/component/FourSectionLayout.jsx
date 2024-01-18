@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-const anio= 2023;
 import { Link, useLocation } from 'react-router-dom';
 import ListPredictions from "./listPredictiosn";
 const FourSectionLayout = () => {
