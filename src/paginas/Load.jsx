@@ -4,8 +4,7 @@ import FourSectionLayout from '../component/FourSectionLayout'
 function Load() {
     return (
         <div>
-        <h1>...</h1>
-        <FourSectionLayout />
+            <FourSectionLayout />
         </div>
     )
 }

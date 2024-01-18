@@ -1,88 +1,55 @@
-import { React,  useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 const anio= 2023;
-import api from "../services/api";
-import { Link } from 'react-router-dom';
-import DataContext from "../context/data";
+import { Link, useLocation } from 'react-router-dom';
+import ListPredictions from "./listPredictiosn";
 const FourSectionLayout = () => {
-  const[travelList, setTravelList] = useState([]);
-  const { state, setState } = useContext(DataContext);
 
+  let location = useLocation();
+  const [grafico, setGrafico] = useState('');
+  const[travelList, setTravelList] = useState([]);
+
+
+  useEffect(() => {
+    console.log(location.state.data)
+    const data = location.state.data;
+    const dataList = JSON.parse(data.prediccion);
+    const dataList2 = dataList.data.map((el) => {
+      return el[0]
+    });
+    const prediccions = []
+    for (let i = 0; i < dataList2.length; i++) {
+      const prediccion = {
+        anio: dataList.index[i],
+        toneladas: dataList2[i],
+      }
+      prediccions.push(prediccion)
+    }
+
+    console.log(prediccions)
+    setTravelList(prediccions)
+    setGrafico(data.grafica)
+
+  }, [])
 
   return (
-    state.data.map((el)=>(
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center', // Centra los elementos horizontalmente
-        justifyContent: 'center', // Centra los elementos verticalmente
-        minHeight: '100vh', // Ajusta la altura según tus necesidades
-      }}
-    >
-      {/* Primera fila con tres columnas */}
-      <div
-        style={{
-          display: 'flex',
-          width: '80%', // Ancho del contenedor principal
-          marginBottom: '20px',
-        }}
-      >
-        {/* Primera columna */}
-        <div
-          style={{
-            flex: '1',
-            marginRight: '5px',
-            backgroundColor: '#f1f1f1',
-            padding: '20px',
-          }}
-        >
-          
-          <h2>Anio{anio}</h2>
+    <>
+      <h1>Listado de predicciones</h1>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', }}>
+        <div style={{ marginRight: '40px' }}>
+          <ListPredictions datos={travelList} />
         </div>
 
-        {/* Segunda columna */}
-        <div
-          style={{
-            flex: '1',
-            marginRight: '5px',
-            backgroundColor: '#c8e6c9',
-            padding: '20px',
-          }}
-        >
-           <p>{el.prediccion}</p> 
-          
-        </div>
-
-        {/* Tercera columna que ocupa el 50% */}
-        <div
-          style={{
-            flex: '2',
-            backgroundColor: '#e3f2fd',
-            padding: '20px',
-          }}
-        >
-          <p>Columna 3 (50%)</p>
-          <img src={el.photo}/>
-          <div>{el.photo}</div>
-        </div>
+      <img
+          src={`data:image/png;base64,${grafico}`}
+          alt="Gráfico"
+        />
       </div>
-
-      {/* Segunda fila con un botón */}
-      <div>
-        <Link to='/'>
-        <button
-          style={{
-            padding: '10px',
-            fontSize: '16px',
-            backgroundColor: '#f8bbd0',
-          }}
-        >
-          Inicio
-        </button>
+      <div style={{ marginTop: '40px' }}>
+      <Link to='/'>
+        <button>Volver a realizar una prediccion</button>
         </Link>
       </div>
-    </div>
-    ))
+    </>
   )
 };
 
