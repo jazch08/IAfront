@@ -1,8 +1,23 @@
-# React + Vite
+# PROYECTO IA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Nuestro proyecto se basa en el pronostico de cantidad de toneladas de pescado que se exportará a EEUU desde Ecuador, el cual utilizará un modelo LSTM pre entrenado para realizar las predicciones.
 
-Currently, two official plugins are available:
+Es importante que el backend se este ejecutando primero para realizar las pruebas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Requerimientos
+* node v18.18.0
+
+## Proceso de instalacion
+```
+git clone https://github.com/jazch08/IAfront.git
+```
+```
+cd IAfront
+```
+```
+npm i
+```
+Para ejecutar el frontend
+```
+npm run dev
+```
